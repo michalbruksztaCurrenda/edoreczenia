@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+
+<html class="light" lang="pl"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-bright": "#f8f9ff",
+                    "surface-dim": "#cbdbf5",
+                    "on-secondary-container": "#603100",
+                    "surface-container-low": "#eff4ff",
+                    "secondary-fixed": "#ffdcc3",
+                    "surface-container-high": "#dce9ff",
+                    "on-error-container": "#93000a",
+                    "surface": "#f8f9ff",
+                    "tertiary-fixed-dim": "#ffb690",
+                    "on-primary": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "background": "#f8f9ff",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-fixed": "#2f1500",
+                    "inverse-primary": "#a7c8ff",
+                    "primary-container": "#003366",
+                    "inverse-surface": "#213145",
+                    "on-background": "#0b1c30",
+                    "error": "#ba1a1a",
+                    "error-container": "#ffdad6",
+                    "primary-fixed": "#d5e3ff",
+                    "surface-variant": "#d3e4fe",
+                    "on-tertiary-container": "#d8885c",
+                    "on-tertiary-fixed-variant": "#723610",
+                    "on-secondary": "#ffffff",
+                    "secondary": "#904d00",
+                    "primary": "#001e40",
+                    "inverse-on-surface": "#eaf1ff",
+                    "surface-container-highest": "#d3e4fe",
+                    "outline-variant": "#c3c6d1",
+                    "on-secondary-fixed-variant": "#6e3900",
+                    "secondary-container": "#fd8b00",
+                    "secondary-fixed-dim": "#ffb77d",
+                    "tertiary-container": "#592300",
+                    "surface-tint": "#3a5f94",
+                    "surface-container": "#e5eeff",
+                    "on-surface-variant": "#43474f",
+                    "on-primary-fixed": "#001b3c",
+                    "on-primary-fixed-variant": "#1f477b",
+                    "outline": "#737780",
+                    "on-tertiary-fixed": "#341100",
+                    "on-surface": "#0b1c30",
+                    "on-error": "#ffffff",
+                    "tertiary": "#381300",
+                    "on-primary-container": "#799dd6",
+                    "primary-fixed-dim": "#a7c8ff",
+                    "tertiary-fixed": "#ffdbca"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "unit": "8px",
+                    "section-padding": "48px",
+                    "stack-lg": "24px",
+                    "gutter": "16px",
+                    "stack-md": "16px",
+                    "margin-desktop": "32px",
+                    "stack-sm": "8px",
+                    "margin-mobile": "16px"
+            },
+            "fontFamily": {
+                    "button": ["Inter"],
+                    "label-caps": ["Inter"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "h3": ["Inter"],
+                    "h2": ["Inter"],
+                    "h1": ["Inter"],
+                    "body-sm": ["Inter"]
+            },
+            "fontSize": {
+                    "button": ["15px", {"lineHeight": "1", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "label-caps": ["12px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400"}],
+                    "h3": ["20px", {"lineHeight": "1.4", "letterSpacing": "0", "fontWeight": "600"}],
+                    "h2": ["24px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "h1": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9ff;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface">
+<!-- TopAppBar Shell -->
+<header class="bg-[#003366] dark:bg-slate-950 text-white font-inter text-lg font-semibold tracking-tight docked full-width top-0 z-50 border-b border-white/10 shadow-md flex justify-between items-center w-full px-4 h-16 fixed">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-white hover:bg-white/10 transition-colors rounded-full p-1 cursor-pointer">menu</span>
+<span class="text-xl font-bold text-white">Do wysyłki</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-white hover:bg-white/10 transition-colors rounded-full p-1 cursor-pointer">search</span>
+<div class="w-8 h-8 rounded-full bg-surface-container-high border-2 border-white/20 flex items-center justify-center overflow-hidden">
+<img alt="Profile" class="w-full h-full object-cover" data-alt="close up professional portrait of a male legal officer in business attire with neutral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZBNcmPHYvtr3LXlnikO1qiEuVMgJFAQmN8OUaAwqMoctTIWvekG6yYLT1I4B0t_nw1qS4iQJVqg-hn-xoxrJ4j42NZPAo-c8_AJVeQTRVvKaPdSTMIhZ4esXZdNUNiQTdmmYAPKz-9iLNJQiRhwX43XzH3LsoEPKEaWwm4jn4pqi8yLvPqYQNxFhqp41iL4YrB-fINc4toYnEb8iL_iSPl4FIuUmGCRzWgAcPKeFUeFrdXb_mysyrhY9r0aF8L9P_DI4bbUgk-g"/>
+</div>
+</div>
+</header>
+<main class="pt-16 pb-24 px-4 max-w-lg mx-auto space-y-4">
+<!-- Status Banner -->
+<div class="mt-4 bg-secondary-fixed rounded-xl p-4 shadow-sm flex items-center justify-between border border-secondary/10">
+<div class="flex items-center gap-3">
+<div class="bg-secondary p-2 rounded-full text-white">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">sync_problem</span>
+</div>
+<div>
+<p class="font-h3 text-on-secondary-fixed text-[15px]">2 niewysłane elementy</p>
+<p class="font-body-sm text-on-secondary-fixed-variant text-[12px]">Ostatnia próba: Przed chwilą</p>
+</div>
+</div>
+<button class="bg-secondary text-white font-button text-button px-4 py-2 rounded-lg shadow-sm active:scale-95 transition-all">
+                Synchronizuj
+            </button>
+</div>
+<!-- Quick Actions Row -->
+<div class="flex gap-2 overflow-x-auto pb-1 custom-scrollbar">
+<button class="flex-none flex items-center gap-2 bg-surface-container-lowest border border-outline-variant px-4 py-2 rounded-full font-button text-button text-on-surface hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[18px]">check_box</span>
+                Zaznacz wszystko
+            </button>
+<button class="flex-none flex items-center gap-2 bg-surface-container-lowest border border-outline-variant px-4 py-2 rounded-full font-button text-button text-on-surface hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[18px]">refresh</span>
+                Odśwież listę
+            </button>
+<button class="flex-none flex items-center gap-2 bg-primary text-white px-4 py-2 rounded-full font-button text-button shadow-sm hover:opacity-90 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[18px]">send</span>
+                Wyślij
+            </button>
+</div>
+<!-- List Section -->
+<div class="space-y-3">
+<!-- Item 1: Error -->
+<div class="bg-surface-container-lowest p-4 rounded-xl shadow-[0_2px_4px_rgba(0,51,102,0.05)] border border-outline-variant relative overflow-hidden group">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-error"></div>
+<div class="flex gap-4">
+<div class="flex-none pt-1">
+<div class="w-5 h-5 rounded border-2 border-outline-variant flex items-center justify-center bg-white">
+<!-- Unselected checkbox state -->
+</div>
+</div>
+<div class="flex-1 space-y-2">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-error" style="font-variation-settings: 'FILL' 1;">description</span>
+<span class="font-label-caps text-on-surface-variant">KM 124/23</span>
+</div>
+<span class="bg-error-container text-on-error-container text-[11px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">Błąd wysyłki</span>
+</div>
+<div class="space-y-0.5">
+<h4 class="font-h3 text-[16px] text-primary">Janusz Kowalski</h4>
+<p class="font-body-sm text-on-surface-variant">Wezwanie do zapłaty - Zaległe alimenty</p>
+</div>
+<div class="pt-2 flex items-center text-error gap-1 text-[12px] font-medium">
+<span class="material-symbols-outlined text-[14px]">error</span>
+                            Brak podpisu kwalifikowanego
+                        </div>
+</div>
+</div>
+<!-- Item 2: Pending Approval -->
+<div class="bg-surface-container-lowest p-4 rounded-xl shadow-[0_2px_4px_rgba(0,51,102,0.05)] border border-outline-variant relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-tertiary-fixed-dim"></div>
+<div class="flex gap-4">
+<div class="flex-none pt-1">
+<div class="w-5 h-5 rounded border-2 border-primary-container flex items-center justify-center bg-primary-container">
+<span class="material-symbols-outlined text-white text-[16px]">check</span>
+</div>
+</div>
+<div class="flex-1 space-y-2">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-container" style="font-variation-settings: 'FILL' 1;">description</span>
+<span class="font-label-caps text-on-surface-variant">GKM 45/24</span>
+</div>
+<span class="bg-surface-container text-on-primary-fixed-variant text-[11px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">Do zatwierdzenia</span>
+</div>
+<div class="space-y-0.5">
+<h4 class="font-h3 text-[16px] text-primary">Anna Maria Nowak</h4>
+<p class="font-body-sm text-on-surface-variant">Zajęcie rachunku bankowego</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Item 3: Waiting to Send -->
+<div class="bg-surface-container-lowest p-4 rounded-xl shadow-[0_2px_4px_rgba(0,51,102,0.05)] border border-outline-variant relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-surface-dim"></div>
+<div class="flex gap-4">
+<div class="flex-none pt-1">
+<div class="w-5 h-5 rounded border-2 border-outline-variant flex items-center justify-center bg-white"></div>
+</div>
+<div class="flex-1 space-y-2">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant" style="font-variation-settings: 'FILL' 1;">description</span>
+<span class="font-label-caps text-on-surface-variant">KM 902/22</span>
+</div>
+<span class="bg-surface-container-high text-on-primary-fixed text-[11px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">Oczekuje na wysyłkę</span>
+</div>
+<div class="space-y-0.5">
+<h4 class="font-h3 text-[16px] text-primary">PKO Bank Polski S.A.</h4>
+<p class="font-body-sm text-on-surface-variant">Zapytanie o stan konta dłużnika</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Item 4: Waiting to Send -->
+<div class="bg-surface-container-lowest p-4 rounded-xl shadow-[0_2px_4px_rgba(0,51,102,0.05)] border border-outline-variant relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-surface-dim"></div>
+<div class="flex gap-4">
+<div class="flex-none pt-1">
+<div class="w-5 h-5 rounded border-2 border-outline-variant flex items-center justify-center bg-white"></div>
+</div>
+<div class="flex-1 space-y-2">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant" style="font-variation-settings: 'FILL' 1;">description</span>
+<span class="font-label-caps text-on-surface-variant">KM 11/24</span>
+</div>
+<span class="bg-surface-container-high text-on-primary-fixed text-[11px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">Oczekuje na wysyłkę</span>
+</div>
+<div class="space-y-0.5">
+<h4 class="font-h3 text-[16px] text-primary">Marek Wójcik</h4>
+<p class="font-body-sm text-on-surface-variant">Postanowienie o umorzeniu</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div></main>
+<!-- BottomNavBar Shell -->
+<nav class="fixed bottom-0 left-0 w-full h-20 flex justify-around items-center px-4 pb-safe bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 shadow-[0_-2px_10px_rgba(0,51,102,0.05)] z-50">
+<div class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 px-3 py-1 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors rounded-xl group cursor-pointer">
+<span class="material-symbols-outlined text-[24px]">mail</span>
+<span class="font-inter text-[11px] font-medium mt-1">Poczta</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-blue-50 dark:bg-blue-900/30 text-[#003366] dark:text-blue-200 rounded-xl px-4 py-2 transition-all scale-105">
+<span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">outbox</span>
+<span class="font-inter text-[11px] font-bold mt-1">Do wysyłki</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 px-3 py-1 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors rounded-xl group cursor-pointer">
+<span class="material-symbols-outlined text-[24px]">manage_search</span>
+<span class="font-inter text-[11px] font-medium mt-1">ADE</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 px-3 py-1 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors rounded-xl group cursor-pointer">
+<span class="material-symbols-outlined text-[24px]">settings</span>
+<span class="font-inter text-[11px] font-medium mt-1">Ustawienia</span>
+</div>
+</nav>
+</body></html>

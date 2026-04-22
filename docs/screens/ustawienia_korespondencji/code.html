@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+
+<html lang="pl"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ustawienia modułu korespondencji</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary": "#904d00",
+                    "on-secondary-fixed": "#2f1500",
+                    "surface-bright": "#f8f9ff",
+                    "on-primary-fixed": "#001b3c",
+                    "secondary-fixed": "#ffdcc3",
+                    "surface-container-highest": "#d3e4fe",
+                    "on-surface-variant": "#43474f",
+                    "background": "#f8f9ff",
+                    "outline": "#737780",
+                    "inverse-primary": "#a7c8ff",
+                    "on-tertiary-fixed-variant": "#723610",
+                    "on-error": "#ffffff",
+                    "tertiary-fixed": "#ffdbca",
+                    "primary-fixed-dim": "#a7c8ff",
+                    "on-tertiary-container": "#d8885c",
+                    "tertiary-container": "#592300",
+                    "inverse-on-surface": "#eaf1ff",
+                    "primary-fixed": "#d5e3ff",
+                    "surface-tint": "#3a5f94",
+                    "primary": "#001e40",
+                    "error": "#ba1a1a",
+                    "on-primary": "#ffffff",
+                    "surface-container-high": "#dce9ff",
+                    "secondary-fixed-dim": "#ffb77d",
+                    "on-surface": "#0b1c30",
+                    "on-primary-fixed-variant": "#1f477b",
+                    "surface": "#f8f9ff",
+                    "primary-container": "#003366",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "surface-container-low": "#eff4ff",
+                    "on-tertiary-fixed": "#341100",
+                    "on-secondary-container": "#603100",
+                    "inverse-surface": "#213145",
+                    "on-primary-container": "#799dd6",
+                    "on-secondary": "#ffffff",
+                    "surface-container": "#e5eeff",
+                    "on-error-container": "#93000a",
+                    "tertiary": "#381300",
+                    "secondary-container": "#fd8b00",
+                    "on-background": "#0b1c30",
+                    "surface-variant": "#d3e4fe",
+                    "on-secondary-fixed-variant": "#6e3900",
+                    "tertiary-fixed-dim": "#ffb690",
+                    "outline-variant": "#c3c6d1",
+                    "error-container": "#ffdad6",
+                    "surface-dim": "#cbdbf5"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "section-padding": "48px",
+                    "stack-lg": "24px",
+                    "stack-md": "16px",
+                    "stack-sm": "8px",
+                    "unit": "8px",
+                    "margin-mobile": "16px",
+                    "gutter": "16px",
+                    "margin-desktop": "32px"
+            },
+            "fontFamily": {
+                    "h2": ["Inter"],
+                    "button": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "h3": ["Inter"],
+                    "h1": ["Inter"],
+                    "label-caps": ["Inter"],
+                    "body-sm": ["Inter"]
+            },
+            "fontSize": {
+                    "h2": ["24px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "button": ["15px", {"lineHeight": "1", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400"}],
+                    "h3": ["20px", {"lineHeight": "1.4", "letterSpacing": "0", "fontWeight": "600"}],
+                    "h1": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-caps": ["12px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #f8f9ff;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-on-surface">
+<!-- TopAppBar Shell -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-4 h-16 bg-slate-900 dark:bg-slate-950 text-white dark:text-slate-100 border-b border-slate-800 shadow-md">
+<div class="flex items-center gap-stack-md">
+<span class="text-lg font-bold text-white uppercase tracking-wider font-h3">e-Komornik</span>
+</div>
+<div class="flex items-center gap-stack-md">
+<span class="material-symbols-outlined style_inactive_navigation cursor-pointer hover:bg-slate-800 transition-colors p-2 rounded-full" data-icon="notifications">notifications</span>
+<div class="w-8 h-8 rounded-full bg-surface-container-highest overflow-hidden border border-slate-700">
+<img alt="User Avatar" data-alt="minimalist professional user profile avatar in a corporate style with neutral slate tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxnPJp9PmaYx3CMsyfBVGfS1RKfs7Oayslr8kSNDF8i3Tb4YgHMXVNxtw6DmKpfm-hkHhcafqw1RM73ag3CDAKhuO4a7Eg4E8WxGy7QMlD0VIqqLmWHdSq13yq_5oSBpc_x_I7MHLp4AqogTdWI9dFnjfwDVrKjVigVF8G_B1ZhiD9UhlwzCFJGGwvfIQvdcMvlG8Vg_hsjL46Cu7X0V71ldJqj2pscqP6JnAY_GbGEBMZmbRKQXw9ORmqMpOZ2ZOd4085jfQbew"/>
+</div>
+</div>
+</header>
+<main class="pt-24 pb-32 px-margin-mobile md:px-margin-desktop max-w-5xl mx-auto">
+<!-- Breadcrumbs & Title -->
+<div class="mb-stack-lg">
+<nav class="flex items-center gap-2 text-on-surface-variant font-body-sm mb-2">
+<span>Moduł korespondencji</span>
+<span class="material-symbols-outlined text-[16px]" data-icon="chevron_right">chevron_right</span>
+<span class="text-on-surface font-semibold">Ustawienia</span>
+</nav>
+<h1 class="font-h1 text-h1 text-primary">Ustawienia modułu korespondencji</h1>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-stack-lg">
+<!-- Settings Form Section -->
+<div class="lg:col-span-8 space-y-stack-lg">
+<!-- Main Configuration Card -->
+<section class="bg-surface-container-lowest rounded-xl p-6 shadow-[0_2px_4px_rgba(0,51,102,0.05)] border border-outline-variant">
+<h3 class="font-h3 text-h3 text-primary-container mb-stack-lg flex items-center gap-2">
+<span class="material-symbols-outlined" data-icon="hub">hub</span>
+                        Konfiguracja połączenia
+                    </h3>
+<div class="grid grid-cols-1 gap-stack-md">
+<!-- Law Firm Name -->
+<div class="flex flex-col gap-2">
+<label class="font-body-sm font-semibold text-on-surface-variant">Law Firm Name</label>
+<input class="w-full px-4 py-3 bg-white border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary-container focus:border-primary-container outline-none transition-all" placeholder="Kancelaria Komornicza nr II w Warszawie" type="text"/>
+</div>
+<!-- System Name -->
+<div class="flex flex-col gap-2">
+<label class="font-body-sm font-semibold text-on-surface-variant">System Name</label>
+<input class="w-full px-4 py-3 bg-white border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary-container focus:border-primary-container outline-none transition-all" placeholder="E-KOM-SYSTEM-V4" type="text"/>
+</div>
+<!-- Correspondence URL -->
+<div class="flex flex-col gap-2">
+<label class="font-body-sm font-semibold text-on-surface-variant">Correspondence URL</label>
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-outline" data-icon="link">link</span>
+<input class="w-full pl-10 pr-4 py-3 bg-white border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary-container focus:border-primary-container outline-none transition-all" placeholder="https://api.korespondencja.pl/v1" type="url"/>
+</div>
+</div>
+<!-- e-Delivery Address -->
+<div class="flex flex-col gap-2">
+<label class="font-body-sm font-semibold text-on-surface-variant">e-Delivery Address</label>
+<input class="w-full px-4 py-3 bg-white border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary-container focus:border-primary-container outline-none transition-all font-mono" placeholder="AE:1234-5678-90AB" type="text"/>
+</div>
+<!-- Private Key -->
+<div class="flex flex-col gap-2">
+<label class="font-body-sm font-semibold text-on-surface-variant">Private Key</label>
+<div class="flex gap-2">
+<div class="relative flex-grow">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-outline" data-icon="key">key</span>
+<input class="w-full pl-10 pr-4 py-3 bg-surface-container-low border border-outline-variant rounded-lg outline-none cursor-not-allowed" readonly="" type="password" value="••••••••••••••••"/>
+</div>
+<button class="px-6 py-3 bg-white border-2 border-primary-container text-primary-container font-button rounded-lg hover:bg-surface-container transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined" data-icon="upload_file">upload_file</span>
+                                    Wybierz
+                                </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Hybrid Mail Card -->
+<section class="bg-surface-container-lowest rounded-xl p-6 shadow-[0_2px_4px_rgba(0,51,102,0.05)] border border-outline-variant">
+<h3 class="font-h3 text-h3 text-primary-container mb-stack-lg flex items-center gap-2">
+<span class="material-symbols-outlined" data-icon="mail">mail</span>
+                        Hybrid Mail options
+                    </h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-stack-md">
+<!-- Color Dropdown -->
+<div class="flex flex-col gap-2">
+<label class="font-body-sm font-semibold text-on-surface-variant">Color</label>
+<select class="w-full px-4 py-3 bg-white border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary-container focus:border-primary-container outline-none transition-all appearance-none cursor-pointer">
+<option>Black &amp; White</option>
+<option>Full Color</option>
+<option>Spot Color</option>
+</select>
+</div>
+<!-- Treatment Dropdown -->
+<div class="flex flex-col gap-2">
+<label class="font-body-sm font-semibold text-on-surface-variant">Treatment</label>
+<select class="w-full px-4 py-3 bg-white border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary-container focus:border-primary-container outline-none transition-all appearance-none cursor-pointer">
+<option>Standard Priority</option>
+<option>Registered Mail</option>
+<option>Express Delivery</option>
+</select>
+</div>
+<!-- Type Dropdown -->
+<div class="flex flex-col gap-2">
+<label class="font-body-sm font-semibold text-on-surface-variant">Type</label>
+<select class="w-full px-4 py-3 bg-white border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary-container focus:border-primary-container outline-none transition-all appearance-none cursor-pointer">
+<option>Standard C5/6</option>
+<option>Large A4 Envelope</option>
+<option>Parcel Box</option>
+</select>
+</div>
+</div>
+</section>
+<!-- Action Buttons -->
+<div class="flex flex-col sm:flex-row items-center justify-end gap-stack-md pt-stack-md">
+<button class="w-full sm:w-auto px-8 py-4 bg-white border-2 border-primary text-primary font-button rounded-xl hover:bg-surface-container transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined" data-icon="sync_alt">sync_alt</span>
+                        Testuj połączenie
+                    </button>
+<button class="w-full sm:w-auto px-10 py-4 bg-secondary-container text-on-secondary-container font-h3 rounded-xl shadow-lg hover:shadow-xl hover:opacity-90 active:scale-95 transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined" data-icon="save">save</span>
+                        Zapisz ustawienia
+                    </button>
+</div>
+</div>
+<!-- Sidebar Info / Help Section -->
+<div class="lg:col-span-4 space-y-stack-lg">
+<div class="bg-primary-container text-on-primary-container rounded-xl p-6 shadow-xl">
+<h4 class="font-h3 text-h3 mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined" data-icon="info">info</span>
+                        Status Systemu
+                    </h4>
+<ul class="space-y-4 font-body-sm">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-green-400" data-icon="check_circle">check_circle</span>
+<span>Usługa e-Doręczeń jest aktywna i gotowa do pracy.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-green-400" data-icon="check_circle">check_circle</span>
+<span>Certyfikat klucza prywatnego wygasa za 244 dni.</span>
+</li>
+</ul>
+</div>
+<div class="bg-white border border-outline-variant rounded-xl p-6">
+<h4 class="font-h3 text-primary mb-4">Pomoc techniczna</h4>
+<p class="font-body-sm text-on-surface-variant mb-6">W przypadku problemów z konfiguracją API korespondencyjnego, prosimy o kontakt z działem IT.</p>
+<a class="inline-flex items-center gap-2 text-primary-container font-semibold hover:underline" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+                        Dokumentacja API
+                    </a>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar Shell -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-3 bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] rounded-t-xl md:hidden">
+<a class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 py-1 w-full hover:text-[#003366] active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="inbox">inbox</span>
+<span class="font-['Inter'] text-[10px] font-medium">Odebrane</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 py-1 w-full hover:text-[#003366] active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="send">send</span>
+<span class="font-['Inter'] text-[10px] font-medium">Wysłane</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 py-1 w-full hover:text-[#003366] active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="pending_actions">pending_actions</span>
+<span class="font-['Inter'] text-[10px] font-medium">Do wysyłki</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 py-1 w-full hover:text-[#003366] active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="gavel">gavel</span>
+<span class="font-['Inter'] text-[10px] font-medium">ADE</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#003366] dark:text-blue-400 font-bold bg-slate-50 dark:bg-slate-800 rounded-lg py-1 w-full active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-['Inter'] text-[10px] font-medium">Ustawienia</span>
+</a>
+</nav>
+<!-- Desktop Navigation Drawer (Conditional) -->
+<div class="hidden md:flex fixed top-16 left-0 h-full w-20 flex-col items-center py-stack-lg bg-slate-900 border-r border-slate-800 z-40">
+<a class="p-3 text-slate-400 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+</a>
+<a class="p-3 text-slate-400 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="inbox">inbox</span>
+</a>
+<a class="p-3 text-slate-400 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="send">send</span>
+</a>
+<div class="mt-auto mb-20 p-3 bg-slate-800 text-white rounded-xl">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</div>
+</div>
+</body></html>
