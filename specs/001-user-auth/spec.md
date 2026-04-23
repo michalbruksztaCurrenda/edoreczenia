@@ -1,9 +1,21 @@
-# Feature Specification: Uwierzytelnianie Użytkownika (User Authentication)
+ # Feature Specification: Uwierzytelnianie Użytkownika (User Authentication)
 
 **Feature Branch**: `001-user-auth`  
 **Created**: 2026-04-22  
 **Status**: Draft  
 **Input**: User description: "Moduł uwierzytelniania użytkownika — logowanie, rejestracja, weryfikacja konta e-mail, utrzymanie sesji, wylogowanie."
+
+---
+
+## Clarifications
+
+### Session 2026-04-23
+
+- Q: Jaka jest polityka haseł (złożoność)? → A: Min. 8 znaków + min. 1 duża litera + min. 1 cyfra lub znak specjalny.
+- Q: Co dzieje się po poprawnej weryfikacji konta (nawigacja)? → A: Konto aktywowane → przekierowanie na ekran logowania; użytkownik loguje się ręcznie.
+- Q: Jak działa sesja — trwałość i odświeżanie tokenów? → A: Token odświeżany gdy aplikacja aktywna (foreground/background); sesja wygasa przy zamknięciu aplikacji lub ręcznym wylogowaniu.
+- Q: Co dzieje się po wielokrotnym wpisaniu błędnego kodu weryfikacyjnego? → A: Po 3 błędnych próbach aktualny kod jest unieważniany; użytkownik musi wysłać nowy kod.
+- Q: Jaka polityka komunikatów błędów przy logowaniu i rejestracji? → A: Ogólny ujednolicony komunikat przy błędnym logowaniu; szczegółowe osobne komunikaty przy zajętym loginie lub e-mailu podczas rejestracji.
 
 ---
 
@@ -59,8 +71,8 @@ Po rejestracji użytkownik otrzymuje na podany adres e-mail kod weryfikacyjny. M
 
 **Acceptance Scenarios**:
 
-1. **Given** użytkownik jest na ekranie weryfikacji e-mail po rejestracji, **When** wprowadza poprawny, nieważący kod weryfikacyjny i zatwierdza, **Then** konto zostaje aktywowane i użytkownik jest przekierowany do ekranu logowania (lub automatycznie zalogowany).
-2. **Given** użytkownik jest na ekranie weryfikacji e-mail, **When** wprowadza niepoprawny kod, **Then** aplikacja wyświetla czytelny komunikat błędu z informacją o pozostałych próbach (jeśli system stosuje limit prób).
+1. **Given** użytkownik jest na ekranie weryfikacji e-mail po rejestracji, **When** wprowadza poprawny, nieważący kod weryfikacyjny i zatwierdza, **Then** konto zostaje aktywowane i użytkownik jest przekierowany do ekranu logowania z komunikatem potwierdzającym aktywację konta.
+2. **Given** użytkownik jest na ekranie weryfikacji e-mail, **When** wprowadza niepoprawny kod, **Then** aplikacja wyświetla czytelny komunikat błędu z informacją o liczbie pozostałych prób (system stosuje limit 3 prób).
 3. **Given** użytkownik jest na ekranie weryfikacji e-mail, **When** kod weryfikacyjny wygasł, **Then** aplikacja informuje o wygaśnięciu kodu i oferuje opcję ponownego wysłania.
 4. **Given** użytkownik jest na ekranie weryfikacji e-mail, **When** klika „Wyślij kod ponownie", **Then** system wysyła nowy kod na ten sam adres e-mail, a stary kod traci ważność.
 5. **Given** użytkownik wraca do aplikacji po dłuższym czasie bez weryfikacji konta, **When** loguje się z niezweryfikowanym kontem, **Then** aplikacja przekierowuje go na ekran weryfikacji z możliwością ponownego wysłania kodu.
@@ -105,7 +117,7 @@ Zalogowany użytkownik może wylogować się z aplikacji w dowolnym momencie. Po
 - **FR-001**: System MUSI umożliwiać użytkownikowi zalogowanie się przy użyciu nazwy użytkownika (loginu) i hasła.
 - **FR-002**: System MUSI wyświetlać stan ładowania podczas weryfikacji danych logowania.
 - **FR-003**: System MUSI po poprawnym zalogowaniu przekierować użytkownika do głównego widoku aplikacji.
-- **FR-004**: System MUSI wyświetlać czytelny, ujednolicony komunikat błędu przy niepoprawnych danych logowania, bez wskazywania, które pole jest błędne.
+- **FR-004**: System MUSI wyświetlać jeden ujednolicony komunikat błędu przy niepoprawnych danych logowania (np. „Nieprawidłowa nazwa użytkownika lub hasło"), bez wskazywania, które pole jest błędne ani czy konto istnieje — zapobieganie enumeracji użytkowników.
 - **FR-005**: System MUSI walidować formularz logowania po stronie klienta (pola niepuste) przed wysłaniem żądania.
 - **FR-006**: System MUSI obsługiwać błędy sieciowe podczas logowania z możliwością ponowienia próby.
 - **FR-007**: System MUSI informować użytkownika próbującego zalogować się na niezweryfikowane konto o konieczności weryfikacji e-mail i oferować ponowne wysłanie kodu.
@@ -116,8 +128,8 @@ Zalogowany użytkownik może wylogować się z aplikacji w dowolnym momencie. Po
 - **FR-009**: System MUSI walidować wszystkie pola formularza rejestracyjnego po stronie klienta przed wysłaniem żądania.
 - **FR-010**: System MUSI sprawdzać, czy pole „Potwierdź hasło" jest identyczne z polem „Hasło" — w przypadku niezgodności blokować wysyłkę i wyświetlać komunikat walidacyjny.
 - **FR-011**: System MUSI walidować format adresu e-mail po stronie klienta.
-- **FR-012**: System MUSI weryfikować, czy hasło spełnia wymagania polityki haseł i wyświetlać czytelną informację o wymaganiach przy niespełnieniu warunków.
-- **FR-013**: System MUSI obsługiwać odpowiedź z backendu informującą o zajętej nazwie użytkownika lub adresie e-mail i prezentować stosowny komunikat użytkownikowi.
+- **FR-012**: System MUSI weryfikować, czy hasło spełnia politykę haseł: minimum 8 znaków, co najmniej 1 wielka litera, co najmniej 1 cyfra lub znak specjalny. Przy niespełnieniu warunków wyświetla czytelną informację o konkretnych wymaganiach.
+- **FR-013**: System MUSI obsługiwać odpowiedź z backendu informującą o konflikcie danych rejestracji i prezentować szczegółowe, odrębne komunikaty: osobny dla zajętej nazwy użytkownika, osobny dla zajętego adresu e-mail.
 - **FR-014**: System MUSI dezaktywować przycisk wysyłki formularza podczas stanu ładowania, aby zapobiec duplikatom żądań.
 - **FR-015**: System MUSI po udanej rejestracji przekierować użytkownika na ekran weryfikacji e-mail.
 
@@ -125,14 +137,16 @@ Zalogowany użytkownik może wylogować się z aplikacji w dowolnym momencie. Po
 
 - **FR-016**: System MUSI umożliwiać użytkownikowi wprowadzenie kodu weryfikacyjnego otrzymanego na adres e-mail.
 - **FR-017**: System MUSI aktywować konto po wprowadzeniu poprawnego, ważnego kodu weryfikacyjnego.
-- **FR-018**: System MUSI informować użytkownika o niepoprawnym kodzie weryfikacyjnym z czytelnym komunikatem błędu.
+- **FR-018**: System MUSI informować użytkownika o niepoprawnym kodzie weryfikacyjnym z czytelnym komunikatem błędu zawierającym informację o liczbie pozostałych prób.
+- **FR-018a**: Po 3 błędnych próbach wprowadzenia kodu weryfikacyjnego system MUSI unieważnić aktualny kod i poinformować użytkownika, że musi wysłać nowy kod, aby kontynuować weryfikację.
 - **FR-019**: System MUSI informować użytkownika o wygaśnięciu kodu i oferować możliwość ponownego wysłania.
 - **FR-020**: System MUSI umożliwiać ponowne wysłanie kodu weryfikacyjnego na ten sam adres e-mail, unieważniając poprzedni kod.
 - **FR-021**: System MUSI oczyścić (trim) kod weryfikacyjny z białych znaków przed walidacją.
 
 #### Sesja
 
-- **FR-022**: System MUSI utrzymywać aktywną sesję użytkownika między restartami aplikacji, o ile sesja nie wygasła i użytkownik nie wylogował się.
+- **FR-022**: System MUSI utrzymywać i odświeżać aktywną sesję użytkownika przez cały czas, gdy aplikacja jest aktywna (foreground lub background). Sesja MUSI wygasać przy zamknięciu aplikacji lub ręcznym wylogowaniu — nie jest utrzymywana między osobnymi uruchomieniami aplikacji.
+- **FR-022a**: System MUSI automatycznie odświeżać token sesji w tle, gdy aplikacja jest aktywna, bez wymagania interakcji użytkownika.
 - **FR-023**: System MUSI przechowywać dane sesji (tokeny uwierzytelniające) wyłącznie w bezpiecznym, szyfrowanym magazynie urządzenia.
 - **FR-024**: System MUSI automatycznie przekierować użytkownika na ekran logowania przy wykryciu wygasłej lub unieważnionej sesji, z czytelnym komunikatem.
 - **FR-025**: System MUSI po wylogowaniu trwale usunąć dane sesji z urządzenia.
@@ -142,7 +156,7 @@ Zalogowany użytkownik może wylogować się z aplikacji w dowolnym momencie. Po
 - **FR-026**: Ekran logowania MUSI zawierać możliwość przejścia do ekranu rejestracji.
 - **FR-027**: Ekran rejestracji MUSI zawierać możliwość powrotu do ekranu logowania.
 - **FR-028**: Ekran weryfikacji e-mail MUSI zawierać możliwość powrotu do ekranu rejestracji lub logowania.
-- **FR-029**: Po pomyślnej weryfikacji konta system MUSI przekierować użytkownika na ekran logowania lub — jeśli sesja jest aktywna — bezpośrednio do głównego widoku aplikacji.
+- **FR-029**: Po pomyślnej weryfikacji konta system MUSI aktywować konto i przekierować użytkownika na ekran logowania. Użytkownik loguje się ręcznie po weryfikacji — brak automatycznego logowania.
 
 #### Stany UI (zgodnie z Konstytucją — zasada VII)
 
@@ -159,7 +173,7 @@ Zalogowany użytkownik może wylogować się z aplikacji w dowolnym momencie. Po
 | Nazwa urządzenia | Niepuste |
 | Nazwa użytkownika (rejestracja) | Niepuste, unikalność weryfikowana przez backend |
 | Adres e-mail | Niepuste, poprawny format e-mail, unikalność weryfikowana przez backend |
-| Hasło (rejestracja) | Niepuste, spełnienie polityki haseł (minimalna długość i złożoność per wymagania backendu) |
+| Hasło (rejestracja) | Niepuste, min. 8 znaków, min. 1 wielka litera, min. 1 cyfra lub znak specjalny |
 | Potwierdzenie hasła | Niepuste, zgodność z polem Hasło |
 | Kod weryfikacyjny | Niepuste, numeryczny lub alfanumeryczny wg formatu backendu, trim białych znaków |
 
@@ -180,7 +194,7 @@ Zalogowany użytkownik może wylogować się z aplikacji w dowolnym momencie. Po
 - **SC-002**: Użytkownik może zarejestrować nowe konto i dotrzeć do ekranu weryfikacji e-mail w czasie poniżej 3 minut.
 - **SC-003**: 100% ekranów modułu uwierzytelniania obsługuje wszystkie wymagane stany UI (Initial, Loading, Error) i nie wyświetla niezobsługiwanych wyjątków ani technicznych komunikatów błędów użytkownikowi końcowemu.
 - **SC-004**: Dane uwierzytelniające (tokeny sesji, hasła) nigdy nie są widoczne w logach aplikacji ani przechowywane poza bezpiecznym magazynem urządzenia.
-- **SC-005**: Użytkownik z aktywną sesją (nie wygasłą) po restarcie aplikacji trafia bezpośrednio do głównego widoku bez konieczności ponownego logowania — w 100% przypadków.
+- **SC-005**: Użytkownik z aktywną, niewylogowaną sesją po ponownym uruchomieniu aplikacji (bez uprzedniego zamknięcia) trafia bezpośrednio do głównego widoku bez konieczności ponownego logowania. Po pełnym zamknięciu aplikacji użytkownik zawsze trafia na ekran logowania.
 - **SC-006**: Użytkownik po wylogowaniu i restarcie aplikacji zawsze trafia na ekran logowania — sesja jest czyszczona natychmiastowo i trwale.
 - **SC-007**: Wszystkie pola formularzy walidowane są po stronie klienta — użytkownik otrzymuje komunikat walidacyjny bez oczekiwania na odpowiedź sieciową w przypadku oczywistych błędów (puste pole, błędny format e-mail, niezgodne hasła).
 - **SC-008**: Ekrany modułu uwierzytelniania są dostępne (a11y) — obsługują TalkBack i skalowanie tekstu bez utraty funkcjonalności.
@@ -190,9 +204,9 @@ Zalogowany użytkownik może wylogować się z aplikacji w dowolnym momencie. Po
 ## Assumptions
 
 - Backend dostarcza API do rejestracji, logowania, weryfikacji kodu e-mail oraz odświeżania i unieważniania sesji. Szczegóły kontraktu API zostaną zdefiniowane w planie technicznym.
-- Polityka haseł (minimalna długość, złożoność) jest definiowana po stronie backendu; klient wyświetla wymagania na podstawie konfiguracji lub stałych zdefiniowanych poza kodem źródłowym.
+- Polityka haseł jest zdefiniowana jako stałe aplikacyjne (min. 8 znaków, min. 1 wielka litera, min. 1 cyfra lub znak specjalny) i egzekwowana po stronie klienta; backend może niezależnie walidować i zwracać błędy niespełnienia polityki.
 - Kod weryfikacyjny e-mail jest wysyłany przez backend — aplikacja nie wysyła e-maili samodzielnie.
-- Sesja jest identyfikowana tokenem (lub parą tokenów: access + refresh) zarządzanym przez backend. Czas wygaśnięcia tokenu jest dostarczany przez backend.
+- Sesja jest identyfikowana tokenem zarządzanym przez backend. Token jest odświeżany gdy aplikacja jest aktywna (foreground/background). Sesja NIE jest utrzymywana między osobnymi uruchomieniami aplikacji — zamknięcie aplikacji kończy sesję.
 - Zakłada się model jednej aktywnej sesji per urządzenie — wiele urządzeń może mieć jednocześnie aktywne sesje tego samego użytkownika.
 - Funkcja biometryczna (odblokowanie aplikacji biometrią) jest zakresem osobnego feature'a (security) i nie wchodzi w zakres tego modułu. Ten moduł odpowiada wyłącznie za uwierzytelnienie hasłem przy logowaniu.
 - Resetowanie zapomnianego hasła (forgot password) jest poza zakresem tego modułu i zostanie zaadresowane osobną specyfikacją.
