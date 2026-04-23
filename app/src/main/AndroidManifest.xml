@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".EDoreczeniaApp"
         android:allowBackup="true"
         android:label="eDoreczenia"
         android:supportsRtl="true"
