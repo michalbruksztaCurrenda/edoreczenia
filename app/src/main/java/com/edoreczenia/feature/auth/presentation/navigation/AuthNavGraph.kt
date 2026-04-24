@@ -2,9 +2,12 @@ package com.edoreczenia.feature.auth.presentation.navigation
 
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
+import androidx.navigation.NavType
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import androidx.navigation.navigation
 import com.edoreczenia.feature.auth.presentation.login.LoginScreen
+import com.edoreczenia.feature.auth.presentation.registration.RegistrationScreen
 
 object AuthRoutes {
     const val AUTH_GRAPH = "auth_graph"
@@ -26,7 +29,6 @@ fun NavGraphBuilder.authNavGraph(
             LoginScreen(
                 onNavigateToMain = onNavigateToMain,
                 onNavigateToRegistration = {
-                    // TODO: nawigacja do rejestracji — US2
                     navController.navigate(AuthRoutes.REGISTRATION)
                 },
                 onNavigateToVerifyEmail = { username ->
@@ -37,18 +39,24 @@ fun NavGraphBuilder.authNavGraph(
             )
         }
 
-        // Placeholder dla rejestracji — US2
         composable(AuthRoutes.REGISTRATION) {
-            // TODO: RegistrationScreen — zaimplementowany w US2
-            LoginScreen(
-                onNavigateToMain = onNavigateToMain,
-                onNavigateToRegistration = {},
-                onNavigateToVerifyEmail = {}
+            RegistrationScreen(
+                onNavigateToVerifyEmail = { username, _ ->
+                    navController.navigate(AuthRoutes.verifyEmailRoute(username)) {
+                        popUpTo(AuthRoutes.REGISTRATION) { inclusive = true }
+                    }
+                },
+                onNavigateToLogin = {
+                    navController.popBackStack()
+                }
             )
         }
 
         // Placeholder dla weryfikacji e-mail — US3
-        composable(AuthRoutes.VERIFY_EMAIL) {
+        composable(
+            route = AuthRoutes.VERIFY_EMAIL,
+            arguments = listOf(navArgument("username") { type = NavType.StringType })
+        ) {
             // TODO: VerifyEmailScreen — zaimplementowany w US3
         }
     }

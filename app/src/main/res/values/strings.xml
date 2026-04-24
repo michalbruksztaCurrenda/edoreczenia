@@ -8,10 +8,31 @@
     <string name="login_button">Zaloguj</string>
     <string name="login_register_button">Zarejestruj się</string>
 
-    <!-- Błędy formularza -->
+    <!-- Rejestracja -->
+    <string name="registration_title">Rejestracja nowego użytkownika</string>
+    <string name="registration_device_name_label">Nazwa urządzenia</string>
+    <string name="registration_username_label">Nazwa użytkownika</string>
+    <string name="registration_email_label">E-mail służbowy</string>
+    <string name="registration_password_label">Hasło</string>
+    <string name="registration_confirm_password_label">Powtórz hasło</string>
+    <string name="registration_button">Zarejestruj konto</string>
+    <string name="registration_back_to_login_button">Mam już konto</string>
+
+    <!-- Błędy formularza — ogólne -->
     <string name="error_field_required">Pole wymagane</string>
+    <string name="error_network">Brak połączenia z siecią. Sprawdź internet i spróbuj ponownie.</string>
+
+    <!-- Błędy logowania -->
     <string name="error_invalid_credentials">Nieprawidłowa nazwa użytkownika lub hasło</string>
     <string name="error_account_locked">Konto zostało zablokowane. Skontaktuj się z administratorem.</string>
     <string name="error_too_many_attempts">Zbyt wiele prób logowania. Spróbuj ponownie później.</string>
-    <string name="error_network">Brak połączenia z siecią. Sprawdź internet i spróbuj ponownie.</string>
+
+    <!-- Błędy rejestracji -->
+    <string name="error_username_already_exists">Nazwa użytkownika jest już zajęta</string>
+    <string name="error_email_already_exists">Podany adres e-mail jest już zarejestrowany</string>
+    <string name="error_device_name_required">Nazwa urządzenia jest wymagana (3–100 znaków)</string>
+    <string name="error_username_too_short">Nazwa użytkownika musi mieć co najmniej 3 znaki</string>
+    <string name="error_email_invalid_format">Podaj prawidłowy adres e-mail</string>
+    <string name="error_password_policy">Hasło musi mieć min. 8 znaków, jedną wielką literę i cyfrę lub znak specjalny</string>
+    <string name="error_passwords_not_matching">Hasła nie są zgodne</string>
 </resources>

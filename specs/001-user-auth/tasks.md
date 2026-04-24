@@ -150,16 +150,16 @@
 
 ### Modele domenowe (US2)
 
-- [ ] T050 [P] Utwórz `VerificationStatus.kt` — sealed class/enum z wariantami: `PENDING`, `VERIFIED`, `EXPIRED`, `LOCKED`, `CODE_RESENT` — plik `app/src/main/java/com/edoreczenia/feature/auth/domain/model/VerificationStatus.kt`
+- [X] T050 [P] Utwórz `VerificationStatus.kt`
 
 ### Walidatory (US2)
 
-- [ ] T051 [P] Utwórz `RegistrationFormValidator.kt` — klasa z metodą `validate(deviceName, username, email, password, confirmPassword: String): RegistrationFormValidationResult`; klasa wynikowa zawiera opcjonalne błędy per pole i metodę `isValid`; reguły: `deviceName` niepuste, 3–100 znaków; `username` niepuste, 3–50 znaków; `email` niepuste, poprawny format RFC-like (regex); `password` niepuste, min 8 znaków, ≥1 wielka litera, ≥1 cyfra lub znak specjalny; `confirmPassword` niepuste, równe `password` — plik `app/src/main/java/com/edoreczenia/feature/auth/domain/validator/RegistrationFormValidator.kt`
+- [X] T051 [P] Utwórz `RegistrationFormValidator.kt`
 
 ### Use case (US2)
 
-- [ ] T052 Utwórz `ValidateRegistrationFormUseCase.kt` — deleguje do `RegistrationFormValidator` — plik `app/src/main/java/com/edoreczenia/feature/auth/domain/usecase/ValidateRegistrationFormUseCase.kt`; wymaga T051
-- [ ] T053 Utwórz `RegisterUserUseCase.kt` — suspend; wywołuje `AuthRepository.register()`; zwraca `AuthResult<String>` (userId) — plik `app/src/main/java/com/edoreczenia/feature/auth/domain/usecase/RegisterUserUseCase.kt`; wymaga T020
+- [X] T052 Utwórz `ValidateRegistrationFormUseCase.kt`
+- [X] T053 Utwórz `RegisterUserUseCase.kt`
 
 ### DTO (US2)
 
@@ -171,7 +171,7 @@
 - [ ] T056 Dodaj do `AuthApi.kt` endpoint: `POST /api/v1/auth/register` → `@Body RegisterRequestDto`: `RegisterResponseDto` — plik `app/src/main/java/com/edoreczenia/feature/auth/data/api/AuthApi.kt`; wymaga T054, T055
 - [ ] T057 Rozszerz `AuthMapper.kt` o metodę: `RegisterResponseDto → String` (zwraca `userId`) — plik `app/src/main/java/com/edoreczenia/feature/auth/data/mapper/AuthMapper.kt`; wymaga T055
 - [ ] T058 Implementuj metodę `register()` w `AuthRepositoryImpl.kt` — analogicznie do `login()`: try/catch, mapowanie błędów, mapowanie sukcesu — plik `app/src/main/java/com/edoreczenia/feature/auth/data/repository/AuthRepositoryImpl.kt`; wymaga T056, T057
-- [ ] T059 Implementuj metodę `register()` w `FakeAuthRepository.kt` — domyślnie sukces z fake `userId`; konfigurowalna przez `shouldFailWith` lub dedykowane pole `var registerResult` — plik `app/src/main/java/com/edoreczenia/feature/auth/data/repository/FakeAuthRepository.kt`; wymaga T037
+- [X] T059 Implementuj metodę `register()` w `FakeAuthRepository.kt`
 
 ### Hilt — rozszerzenie modułu (US2)
 
@@ -179,17 +179,17 @@
 
 ### UiState i ViewModel — rejestracja (US2)
 
-- [ ] T061 Utwórz `RegistrationUiState.kt` — data class: `isLoading: Boolean = false`, `deviceNameInput: String = ""`, `usernameInput: String = ""`, `emailInput: String = ""`, `passwordInput: String = ""`, `confirmPasswordInput: String = ""`, `deviceNameError: String? = null`, `usernameError: String? = null`, `emailError: String? = null`, `passwordError: String? = null`, `confirmPasswordError: String? = null`, `formError: String? = null`; sealed class `RegistrationEffect`: `NavigateToVerifyEmail(username: String, email: String)`, `NavigateToLogin`, `ShowMessage(text: String)` — plik `app/src/main/java/com/edoreczenia/feature/auth/presentation/registration/RegistrationUiState.kt`
-- [ ] T062 Utwórz `RegistrationViewModel.kt` — `@HiltViewModel @Inject constructor`; eksponuje `uiState: StateFlow<RegistrationUiState>` i `effects: Flow<RegistrationEffect>`; metody `onXxxChanged(value)` dla każdego pola; `onRegisterClicked()`: `ValidateRegistrationFormUseCase` → przy błędach walidacji: aktualizuje pola error, brak wywołania API; przy OK: `isLoading = true`, `RegisterUserUseCase`, obsługuje wynik; mapowanie błędów backendu: `Business(USERNAME_ALREADY_EXISTS)` → `usernameError` (FR-013); `Business(EMAIL_ALREADY_EXISTS)` → `emailError` (FR-013); `Validation(fieldErrors)` → mapowanie na odpowiednie pola; `Network` → `formError`; `onBackToLoginClicked()` → efekt `NavigateToLogin` — plik `app/src/main/java/com/edoreczenia/feature/auth/presentation/registration/RegistrationViewModel.kt`; wymaga T052, T053, T061
+- [X] T061 Utwórz `RegistrationUiState.kt`
+- [X] T062 Utwórz `RegistrationViewModel.kt`
 
 ### Ekran rejestracji i nawigacja (US2)
 
-- [ ] T063 Utwórz `RegistrationScreen.kt` — Composable; pola: `deviceName`, `username`, `email`, `password`, `confirmPassword`; walidacja inline przy każdym polu; błędy per pole widoczne pod polem; przycisk "Zarejestruj" zablokowany gdy `isLoading`; spinner loading; przycisk powrotu do logowania; **brak logiki biznesowej w Composable** — plik `app/src/main/java/com/edoreczenia/feature/auth/presentation/registration/RegistrationScreen.kt`; wymaga T062; ekran referencyjny: `docs/screens/rejestracja_u_ytkownika/`
-- [ ] T064 Rozszerz `AuthNavGraph.kt` o: trasę `Registration` z kompozable `RegistrationScreen`; przejście `Login → Registration` przez `navigate(Registration)`; przejście `Registration → VerifyEmail/{username}` z `popUpTo(Registration) { inclusive = true }` (przy sukcesie); przejście `Registration → Login` (back/cancel) — plik `app/src/main/java/com/edoreczenia/feature/auth/presentation/navigation/AuthNavGraph.kt`; wymaga T063
+- [X] T063 Utwórz `RegistrationScreen.kt`
+- [X] T064 Rozszerz `AuthNavGraph.kt` o trasę Registration z RegistrationScreen
 
 ### Zasoby stringów — rejestracja (US2)
 
-- [ ] T065 [P] Dodaj zasoby stringów dla ekranu rejestracji do `strings.xml`: `error_username_already_exists`, `error_email_already_exists`, `error_device_name_required`, `error_username_too_short`, `error_email_invalid_format`, `error_password_policy`, `error_passwords_not_matching`, `registration_title`, `registration_device_name_label`, `registration_username_label`, `registration_email_label`, `registration_password_label`, `registration_confirm_password_label`, `registration_button`, `registration_back_to_login_button` — plik `app/src/main/res/values/strings.xml`
+- [X] T065 [P] Dodaj zasoby stringów dla ekranu rejestracji do `strings.xml`
 
 ### Testy — US2
 

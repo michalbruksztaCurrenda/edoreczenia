@@ -31,6 +31,8 @@ class FakeAuthRepository : AuthRepository {
 
     var checkSessionResult: AuthResult<User> = AuthResult.Success(fakeUser())
 
+    var registerResult: AuthResult<String> = AuthResult.Success("usr_fake_002")
+
     override suspend fun login(username: String, password: String): AuthResult<Pair<User, Session>> =
         shouldFailWith?.let { AuthResult.Failure(it) } ?: loginResult
 
@@ -40,15 +42,14 @@ class FakeAuthRepository : AuthRepository {
     override suspend fun checkSession(): AuthResult<User> =
         shouldFailWith?.let { AuthResult.Failure(it) } ?: checkSessionResult
 
-    // ---- Niezaimplementowane (US2–US4) ----
-
     override suspend fun register(
         deviceName: String,
         username: String,
         email: String,
         password: String,
         confirmPassword: String
-    ): AuthResult<String> = AuthResult.Failure(AppError.Unknown())
+    ): AuthResult<String> =
+        shouldFailWith?.let { AuthResult.Failure(it) } ?: registerResult
 
     override suspend fun verifyEmailCode(
         username: String,
