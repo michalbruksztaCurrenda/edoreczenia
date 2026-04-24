@@ -47,7 +47,10 @@ fun NavGraphBuilder.authNavGraph(
                     }
                 },
                 onNavigateToLogin = {
-                    navController.popBackStack()
+                    navController.navigate(AuthRoutes.LOGIN) {
+                        popUpTo(AuthRoutes.AUTH_GRAPH) { inclusive = false }
+                        launchSingleTop = true
+                    }
                 }
             )
         }
