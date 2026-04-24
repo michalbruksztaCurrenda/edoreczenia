@@ -6,8 +6,11 @@
     <uses-permission android:name="android.permission.USE_FINGERPRINT" />
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
     <application
-        android:name=".EDoreczeniaApp"
         android:allowBackup="true"
         android:label="eDoreczenia"
         android:supportsRtl="true"

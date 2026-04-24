@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">eDoreczenia</string>
+
+    <!-- Logowanie -->
+    <string name="login_title">Logowanie</string>
+    <string name="login_username_label">Nazwa użytkownika</string>
+    <string name="login_password_label">Hasło</string>
+    <string name="login_button">Zaloguj</string>
+    <string name="login_register_button">Zarejestruj się</string>
+
+    <!-- Błędy formularza -->
+    <string name="error_field_required">Pole wymagane</string>
+    <string name="error_invalid_credentials">Nieprawidłowa nazwa użytkownika lub hasło</string>
+    <string name="error_account_locked">Konto zostało zablokowane. Skontaktuj się z administratorem.</string>
+    <string name="error_too_many_attempts">Zbyt wiele prób logowania. Spróbuj ponownie później.</string>
+    <string name="error_network">Brak połączenia z siecią. Sprawdź internet i spróbuj ponownie.</string>
 </resources>

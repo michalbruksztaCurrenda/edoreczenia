@@ -5,13 +5,17 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.edoreczenia.feature.auth.presentation.navigation.AuthRoutes
+import com.edoreczenia.feature.auth.presentation.navigation.authNavGraph
 import com.edoreczenia.ui.theme.EDoreczeniaTheme
+
+private const val MAIN_ROUTE = "main"
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,11 +23,8 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             EDoreczeniaTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                Surface(modifier = Modifier.fillMaxSize()) {
+                    AppNavHost()
                 }
             }
         }
@@ -31,17 +32,25 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
+fun AppNavHost() {
+    val navController = rememberNavController()
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    EDoreczeniaTheme {
-        Greeting("Android")
+    NavHost(
+        navController = navController,
+        startDestination = AuthRoutes.AUTH_GRAPH
+    ) {
+        authNavGraph(
+            navController = navController,
+            onNavigateToMain = {
+                navController.navigate(MAIN_ROUTE) {
+                    popUpTo(AuthRoutes.AUTH_GRAPH) { inclusive = true }
+                }
+            }
+        )
+
+        // Placeholder głównego ekranu aplikacji (po zalogowaniu)
+        composable(MAIN_ROUTE) {
+            // TODO: MainScreen — poza zakresem US1
+        }
     }
 }
