@@ -7,6 +7,18 @@
 
 ---
 
+## Clarifications
+
+### Session 2026-04-25
+
+- Q: Jak ma działać przycisk „Synchronizuj" w mockowej implementacji? → A: Klik → krótki loading (1–2 sek.) → ponowne załadowanie tych samych mock-danych → czas ostatniej próby aktualizowany do bieżącego czasu.
+- Q: Jak mają zachowywać się przyciski „Zaznacz wszystko" i „Wyślij" w mockowej wersji? → A: Widoczne i aktywne, kliknięcie → brak reakcji (brak feedbacku, brak Snackbara w mock).
+- Q: Czy pull-to-refresh ma być aktywny już teraz? → A: Tak, pull-to-refresh jest aktywny i wywołuje ten sam efekt co przycisk „Odśwież listę" w quick actions (loading → reload tych samych mock-danych).
+- Q: Jakie konkretne teksty mają mieć stan pusty i stan błędu? → A: Pusty: „Brak pozycji do wysyłki" / „Wszystkie przesyłki zostały wysłane". Błąd: „Nie udało się pobrać kolejki" / „Spróbuj ponownie". Klucze: `outbox_empty_title`, `outbox_empty_subtitle`, `outbox_error_title`, `outbox_error_retry_button` — analogia do konwencji inbox (002).
+- Q: Czy UI multi-select (checkboxy) ma być obecne wizualnie w tej wersji? → A: Nie — brak checkboxów i jakiegokolwiek UI zaznaczenia. Brak stanu zaznaczenia w `OutboxUiState`. „Zaznacz wszystko" w quick actions jest widoczne, ale niereaktywne.
+
+---
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 — Przeglądanie listy pozycji do wysyłki (Priority: P1)
@@ -89,8 +101,8 @@ Użytkownik klika wybraną pozycję na liście i przechodzi do ekranu szczegół
 
 ### Edge Cases
 
-- Co się dzieje, gdy lista jest pusta po załadowaniu? → Wyświetlany jest dedykowany stan pusty z czytelnym komunikatem.
-- Co się dzieje przy braku połączenia lub błędzie sieciowym? → Wyświetlany jest stan błędu z opcją ponowienia próby.
+- Co się dzieje, gdy lista jest pusta po załadowaniu? → Wyświetlany jest dedykowany stan pusty: tytuł „Brak pozycji do wysyłki", podtytuł „Wszystkie przesyłki zostały wysłane".
+- Co się dzieje przy braku połączenia lub błędzie sieciowym? → Wyświetlany jest stan błędu: tytuł „Nie udało się pobrać kolejki", przycisk „Spróbuj ponownie".
 - Co jeśli pozycja ma nieznany/niezdefiniowany status? → Wyświetlana jest jako „Oczekuje na wysyłkę" (domyślny fallback).
 - Co jeśli komunikat błędu dla pozycji jest pusty? → Pole błędu nie jest wyświetlane (warunkowa widoczność).
 - Co jeśli lista ma bardzo wiele pozycji? → Lista jest przewijalna; brak paginacji w pierwszej implementacji (mockowe dane).
@@ -108,14 +120,22 @@ Użytkownik klika wybraną pozycję na liście i przechodzi do ekranu szczegół
 - **FR-005**: Ekran MUSI obsługiwać pięć stanów UI: Initial, Loading, Success (lista z danymi), Empty (pusta lista), Error (błąd pobierania).
 - **FR-006**: Ekran MUSI wyświetlać baner statusu z liczbą niewysłanych elementów, czasem ostatniej próby i przyciskiem „Synchronizuj".
 - **FR-007**: Ekran MUSI zawierać poziomy pasek szybkich akcji: „Zaznacz wszystko", „Odśwież listę", „Wyślij".
-- **FR-008**: Kliknięcie „Odśwież listę" MUSI odświeżać listę pozycji.
+- **FR-008**: Kliknięcie „Odśwież listę" MUSI odświeżać listę pozycji (krótki loading → ponowne załadowanie mock-danych).
+- **FR-008a**: Ekran MUSI obsługiwać pull-to-refresh — efekt identyczny jak „Odśwież listę" (loading → reload tych samych mock-danych).
+- **FR-008b**: Przycisk „Synchronizuj" w banerze MUSI wywołać krótki loading (1–2 sek.) → reload tych samych mock-danych → aktualizację czasu ostatniej próby do bieżącego czasu.
+- **FR-008c**: Przyciski „Zaznacz wszystko" i „Wyślij" w pasku quick actions są widoczne i aktywne, ale kliknięcie nie wywołuje żadnej reakcji (brak Snackbara, brak logiki w mock).
+- **FR-008d**: Brak checkboxów i jakiegokolwiek UI multi-select w tej wersji. Brak stanu zaznaczenia w `OutboxUiState`.
 - **FR-009**: Kliknięcie pozycji na liście MUSI prowadzić do ekranu szczegółów (może być placeholder).
 - **FR-010**: Ekran szczegółów MUSI umożliwiać powrót do listy „Do wysyłki" przez przycisk cofnięcia lub systemowy Back.
 - **FR-011**: Ekran MUSI posiadać TopAppBar z tytułem „Do wysyłki", ikoną menu i ikoną wyszukiwania, zgodnie z makietą.
 - **FR-012**: Ekran MUSI posiadać BottomNavigationBar z 4 pozycjami: Poczta, Do wysyłki (aktywna), ADE, Ustawienia.
 - **FR-013**: Dane listy MUSZĄ pochodzić z warstwy data (repozytorium); w pierwszej implementacji źródłem jest `FakeOutboxRepository` z przykładowymi rekordami.
 - **FR-014**: Logika biznesowa NIE MOŻE być umieszczona bezpośrednio w composable.
-- **FR-015**: Teksty i etykiety UI MUSZĄ być zarządzane przez zasoby strings (`strings.xml`), bez hardcodowania w kodzie.
+- **FR-015**: Teksty i etykiety UI MUSZĄ być zarządzane przez zasoby strings (`strings.xml`), bez hardcodowania w kodzie. Nowe klucze dla 003:
+  - `outbox_empty_title` = „Brak pozycji do wysyłki"
+  - `outbox_empty_subtitle` = „Wszystkie przesyłki zostały wysłane"
+  - `outbox_error_title` = „Nie udało się pobrać kolejki"
+  - `outbox_error_retry_button` = „Spróbuj ponownie"
 
 ### Obsługiwane statusy przesyłki (z makiety)
 
@@ -189,6 +209,8 @@ Ekran po implementacji MA wyświetlać te przykładowe dane bez połączenia z b
 - Kolorystyka i ikony są zgodne z paletą zdefiniowaną w `code.html` (Material 3, paleta e-Komornik).
 - Nie jest używany Hilt ani Room (brak uzasadnienia na etapie mockowym).
 - BottomNavBar „Do wysyłki" używa ikony `outbox` (Material Symbols), zgodnie z makietą.
-- Baner statusu wyświetla liczbę i czas ostatniej próby na podstawie stanu z warstwy danych — w mockowej implementacji wartości są statyczne.
-- Zarządzanie sesjami i uwierzytelnienie jest poza zakresem tego feature'a.
+- Baner statusu wyświetla liczbę i czas ostatniej próby na podstawie stanu z warstwy danych — w mockowej implementacji wartości są statyczne; kliknięcie „Synchronizuj" symuluje loading (1–2 sek.) i aktualizuje czas do bieżącego.
+- Pull-to-refresh jest aktywny i wywołuje identyczny efekt jak przycisk „Odśwież listę": loading → reload tych samych mock-danych.
+- Przyciski „Zaznacz wszystko" i „Wyślij" są widoczne w quick actions, ale niereaktywne w mockowej implementacji — brak multi-select UI i brak stanu zaznaczenia w `OutboxUiState`.
+- Zarz…dzanie sesjami i uwierzytelnienie jest poza zakresem tego feature'a.
 

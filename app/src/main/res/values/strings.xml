@@ -1,9 +1,9 @@
 ﻿<resources>
-    <string name="app_name">eDoreczenia</string>
+    <string name="app_name">eDoręczenia</string>
 
     <!-- Logowanie -->
     <string name="login_title">Logowanie</string>
-    <string name="login_username_label">Nazwa uĹĽytkownika</string>
+    <string name="login_username_label">Nazwa użytkownika</string>
     <string name="login_password_label">Hasło</string>
     <string name="login_button">Zaloguj</string>
     <string name="login_register_button">Zarejestruj</string>
@@ -12,48 +12,48 @@
     <string name="registration_title">Rejestracja nowego użytkownika</string>
     <string name="registration_device_name_label">Nazwa urządzenia</string>
     <string name="registration_username_label">Nazwa użytkownika</string>
-    <string name="registration_email_label">"E-mail "</string>
+    <string name="registration_email_label">E-mail</string>
     <string name="registration_password_label">Hasło</string>
-    <string name="registration_confirm_password_label">PowtĂłrz hasĹ‚o</string>
+    <string name="registration_confirm_password_label">Powtórz hasło</string>
     <string name="registration_button">Zarejestruj konto</string>
-    <string name="registration_back_to_login_button">Mam juĹĽ konto</string>
+    <string name="registration_back_to_login_button">Mam już konto</string>
 
-    <!-- BĹ‚Ä™dy formularza â€” ogĂłlne -->
+    <!-- Błędy formularza — ogólne -->
     <string name="error_field_required">Pole wymagane</string>
-    <string name="error_network">Brak poĹ‚Ä…czenia z sieciÄ…. SprawdĹş internet i sprĂłbuj ponownie.</string>
+    <string name="error_network">Brak połączenia z siecią. Sprawdź internet i spróbuj ponownie.</string>
 
-    <!-- BĹ‚Ä™dy logowania -->
-    <string name="error_invalid_credentials">NieprawidĹ‚owa nazwa uĹĽytkownika lub hasĹ‚o</string>
-    <string name="error_account_locked">Konto zostaĹ‚o zablokowane. Skontaktuj siÄ™ z administratorem.</string>
-    <string name="error_too_many_attempts">Zbyt wiele prĂłb logowania. SprĂłbuj ponownie pĂłĹşniej.</string>
+    <!-- Błędy logowania -->
+    <string name="error_invalid_credentials">Nieprawidłowa nazwa użytkownika lub hasło</string>
+    <string name="error_account_locked">Konto zostało zablokowane. Skontaktuj się z administratorem.</string>
+    <string name="error_too_many_attempts">Zbyt wiele prób logowania. Spróbuj ponownie później.</string>
 
-    <!-- BĹ‚Ä™dy rejestracji -->
-    <string name="error_username_already_exists">Nazwa uĹĽytkownika jest juĹĽ zajÄ™ta</string>
-    <string name="error_email_already_exists">Podany adres e-mail jest juĹĽ zarejestrowany</string>
-    <string name="error_device_name_required">Nazwa urzÄ…dzenia jest wymagana (3â€“100 znakĂłw)</string>
-    <string name="error_username_too_short">Nazwa uĹĽytkownika musi mieÄ‡ co najmniej 3 znaki</string>
-    <string name="error_email_invalid_format">Podaj prawidĹ‚owy adres e-mail</string>
-    <string name="error_password_policy">HasĹ‚o musi mieÄ‡ min. 8 znakĂłw, jednÄ… wielkÄ… literÄ™ i cyfrÄ™ lub znak specjalny</string>
-    <string name="error_passwords_not_matching">HasĹ‚a nie sÄ… zgodne</string>
+    <!-- Błędy rejestracji -->
+    <string name="error_username_already_exists">Nazwa użytkownika jest już zajęta</string>
+    <string name="error_email_already_exists">Podany adres e-mail jest już zarejestrowany</string>
+    <string name="error_device_name_required">Nazwa urządzenia jest wymagana (3-100 znaków)</string>
+    <string name="error_username_too_short">Nazwa użytkownika musi mieć co najmniej 3 znaki</string>
+    <string name="error_email_invalid_format">Podaj prawidłowy adres e-mail</string>
+    <string name="error_password_policy">Hasło musi mieć min. 8 znaków, jedną wielką literę i cyfrę lub znak specjalny</string>
+    <string name="error_passwords_not_matching">Hasła nie są zgodne</string>
 
-    <!-- Inbox â€” Odebrane -->
+    <!-- Inbox — Odebrane -->
     <string name="inbox_title">Odebrane</string>
     <string name="inbox_new_badge">%d nowe</string>
-    <string name="inbox_search_placeholder">Szukaj wiadomoĹ›ciâ€¦</string>
+    <string name="inbox_search_placeholder">Szukaj wiadomości</string>
     <string name="inbox_filter_all">Wszystkie</string>
     <string name="inbox_filter_unread">Nieprzeczytane</string>
-    <string name="inbox_filter_starred">WaĹĽne</string>
-    <string name="inbox_empty_no_messages_title">Koniec wiadomoĹ›ci</string>
+    <string name="inbox_filter_starred">Ważne</string>
+    <string name="inbox_empty_no_messages_title">Koniec wiadomości</string>
     <string name="inbox_empty_no_messages_subtitle">Wszystkie dokumenty zostały wyświetlone</string>
-    <string name="inbox_empty_no_results_title">Brak wynikĂłw</string>
+    <string name="inbox_empty_no_results_title">Brak wyników</string>
     <string name="inbox_empty_no_results_subtitle">Nie znaleziono wiadomości spełniających kryteria</string>
     <string name="inbox_error_title">Nie udało się pobrać wiadomości</string>
-    <string name="inbox_error_retry">SprĂłbuj ponownie</string>
+    <string name="inbox_error_retry">Spróbuj ponownie</string>
     <string name="inbox_bottom_nav_inbox">Poczta</string>
     <string name="inbox_bottom_nav_outbox">Do wysyłki</string>
     <string name="inbox_bottom_nav_ade">Szukaj</string>
     <string name="inbox_bottom_nav_settings">Ustawienia</string>
     <string name="inbox_fab_compose">Nowa wiadomość</string>
     <string name="inbox_detail_soon">Szczegóły wiadomości wkrótce</string>
-    <string name="inbox_back">Wróć do Odebrane</string>
+    <string name="inbox_back">Wróć do Odebranych</string>
 </resources>
