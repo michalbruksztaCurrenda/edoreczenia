@@ -92,7 +92,7 @@ private fun LoginTopBar() {
     TopAppBar(
         title = {
             Text(
-                text = "e-Komornik",
+                text = "e-Doręczenia",
                 color = Color.White,
                 fontWeight = FontWeight.Bold,
                 fontSize = 18.sp,

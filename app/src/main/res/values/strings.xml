@@ -4,16 +4,16 @@
     <!-- Logowanie -->
     <string name="login_title">Logowanie</string>
     <string name="login_username_label">Nazwa uĹĽytkownika</string>
-    <string name="login_password_label">HasĹ‚o</string>
+    <string name="login_password_label">Hasło</string>
     <string name="login_button">Zaloguj</string>
-    <string name="login_register_button">Zarejestruj siÄ™</string>
+    <string name="login_register_button">Zarejestruj</string>
 
     <!-- Rejestracja -->
-    <string name="registration_title">Rejestracja nowego uĹĽytkownika</string>
-    <string name="registration_device_name_label">Nazwa urzÄ…dzenia</string>
-    <string name="registration_username_label">Nazwa uĹĽytkownika</string>
-    <string name="registration_email_label">E-mail sĹ‚uĹĽbowy</string>
-    <string name="registration_password_label">HasĹ‚o</string>
+    <string name="registration_title">Rejestracja nowego użytkownika</string>
+    <string name="registration_device_name_label">Nazwa urządzenia</string>
+    <string name="registration_username_label">Nazwa użytkownika</string>
+    <string name="registration_email_label">"E-mail "</string>
+    <string name="registration_password_label">Hasło</string>
     <string name="registration_confirm_password_label">PowtĂłrz hasĹ‚o</string>
     <string name="registration_button">Zarejestruj konto</string>
     <string name="registration_back_to_login_button">Mam juĹĽ konto</string>
@@ -44,16 +44,16 @@
     <string name="inbox_filter_unread">Nieprzeczytane</string>
     <string name="inbox_filter_starred">WaĹĽne</string>
     <string name="inbox_empty_no_messages_title">Koniec wiadomoĹ›ci</string>
-    <string name="inbox_empty_no_messages_subtitle">Wszystkie dokumenty zostaĹ‚y wyĹ›wietlone</string>
+    <string name="inbox_empty_no_messages_subtitle">Wszystkie dokumenty zostały wyświetlone</string>
     <string name="inbox_empty_no_results_title">Brak wynikĂłw</string>
-    <string name="inbox_empty_no_results_subtitle">Nie znaleziono wiadomoĹ›ci speĹ‚niajÄ…cych kryteria</string>
-    <string name="inbox_error_title">Nie udaĹ‚o siÄ™ pobraÄ‡ wiadomoĹ›ci</string>
+    <string name="inbox_empty_no_results_subtitle">Nie znaleziono wiadomości spełniających kryteria</string>
+    <string name="inbox_error_title">Nie udało się pobrać wiadomości</string>
     <string name="inbox_error_retry">SprĂłbuj ponownie</string>
     <string name="inbox_bottom_nav_inbox">Poczta</string>
-    <string name="inbox_bottom_nav_outbox">Do wysyĹ‚ki</string>
-    <string name="inbox_bottom_nav_ade">ADE</string>
+    <string name="inbox_bottom_nav_outbox">Do wysyłki</string>
+    <string name="inbox_bottom_nav_ade">Szukaj</string>
     <string name="inbox_bottom_nav_settings">Ustawienia</string>
-    <string name="inbox_fab_compose">Nowa wiadomoĹ›Ä‡</string>
-    <string name="inbox_detail_soon">SzczegĂłĹ‚y wiadomoĹ›ci â€” wkrĂłtce</string>
+    <string name="inbox_fab_compose">Nowa wiadomość</string>
+    <string name="inbox_detail_soon">Szczegóły wiadomości wkrótce</string>
     <string name="inbox_back">Wróć do Odebrane</string>
 </resources>
